@@ -1,0 +1,158 @@
+{% extends 'recipes/base.html' %}
+{% block content %}
+<main class="container">
+<form method="get" action="">
+    <div class="ingredients_choice">
+        <input name="choose_cousine" value="name" type="text">
+        <div class="dropdown_cousine s0">
+            <a href="javascript:void(0);" class="white-bg">
+                <span class="open">Кухня</span>
+            </a>
+            <ul class="choose_cousine_menu">
+               {% for k in cousins %}
+                 <li><input name="cousine" type="radio" value = {{ k.id }} id={{ k.id }}><label for={{ k.id}}>{{ k.title }}</label></li>
+               {%  endfor %}
+            </ul>
+
+
+        </div>
+        <input name="choose_cousine_menu" value="2" type="text">
+        <div class="dropdown_cousine s1">
+            <a href="javascript:void(0);">
+                <span class="open">Меню</span>
+            </a>
+            <ul class="choose_cousine_menu">
+                {% for l in menues %}
+                <li><input name = "menu" type="radio" value={{ l.id }} id={{ l.id }}><label for={{ l.id }}>{{ l.title }}</label></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <input name="choose_cousine_menu" value="3" type="text">
+        <div class="dropdown_cousine s2"><a href="javascript:void(0);" class="white-bg">
+            <span class="open">Категория</span></a>
+            <ul class="choose_cousine_menu">
+                {% for k in category %}
+                 <li><input name = "cat" type="radio" value={{ k.id }} id={{ k.id }}><label for={{ k.id }}>{{ k.title }}</label></li>
+               {%  endfor %}
+            </ul>
+        </div>
+        <div class="dropdown_cousine"><button type="submit" class="find_recipe" name = "choose">Search</button></div>
+    </div>
+
+</form>
+
+    <section class="awSlider">
+        <div id="slider_main" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#slider_main" data-slide-to="0" class="active"></li>
+                <li data-target="#slider_main" data-slide-to="1"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <a href="#"><img src="static/img/slider/1.jpg" class="d-block w-100"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="static/img/slider/2.png" class="d-block w-100"></a>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#slider_main" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Prev</span>
+            </a>
+            <a class="carousel-control-next" href="#slider_main" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        </div>
+    </section>
+    <div class="container recipes_main">
+        <div class="sortmenu">
+            <h2>Еженедельная подборка</h2>
+            <div class="sort">
+                <h3>Сортировка по:</h3>
+                <form method="get" action="">
+                    <button class="popularity" name="Popular_button" value="1" >Популярности</button>
+                <button class="date" name="Date_button" value="2" >Дате публикации</button>
+                </form>
+            </div>
+        </div>
+        <div class="recipes_hidden" id="content">
+            <div id="container1">
+            {% for recipe in object_list %}
+                 <a href={% url 'detail' recipe.id %}>
+                <div class="recipe_block">
+                    {% if recipe.image %}
+                        <img src="{{ MEDIA_URL }}{{ recipe.image.url }}">
+                    {% endif %}
+                    <!--                    <img src="static/recipes_img/crsar.jpg" alt="">-->
+                    <h2>{{ recipe.title }}</h2>
+                    <p class="description">{{ recipe.description }}</p>
+                    <div class="recipe_info">
+                        <div>
+                            <h4 class="info_name">ВреMя</h4>
+                            <h5 class="info_value">{{ recipe.time }}<br> минут</h5>
+                        </div>
+                        <div>
+                            <h4 class="info_name">Сложность</h4>
+                            <h5 class="info_value">{{ recipe.diff }}</h5>
+                        </div>
+                        <div>
+                            <h4 class="info_name">Калории</h4>
+                            <h5 class="info_value">{{ recipe.cal }} ккал<br>100 грамм</h5>
+                        </div>
+                        <div>
+                            <h4 class="info_name">Просмотры</h4>
+                            <h5 class="info_value">{{ recipe.views }}</h5>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            {% endfor %}
+            </div>
+        </div>
+<!--        <div class="recipe_pages" id="recipe_pages">-->
+<!--            <div class="recipe_pages1" id="recipe_pages1">-->
+<!--                <div class="previous">-->
+<!--                {% if page_obj.has_previous %}-->
+<!--                    <div class="non-blocked">-->
+<!--                        <a  id="a" href="?page={{ page_obj.previous_page_number }}">Предыдущая страница</a>-->
+<!--                    </div>-->
+<!--                {% else %}-->
+<!--                    <div class="blocked">Предыдущая страница</div>-->
+<!--                {% endif %}-->
+<!--            </div>-->
+
+<!--            <div class="current_page">-->
+<!--                <span class="current">-->
+<!--                    Страница {{ page_obj.number }} из {{ paginator.num_pages }}-->
+<!--                </span>-->
+<!--            </div>-->
+<!--            <div class="next">-->
+<!--                {% if page_obj.has_next %}-->
+<!--                    <div class="non-blocked">-->
+<!--                        <a id="a" href="?page={{ page_obj.next_page_number }}">Следующая страница</a>-->
+<!--                    </div>-->
+
+<!--                {% else %}-->
+<!--                        <div class="blocked">Следующая страница</div>-->
+<!--                {% endif %}-->
+<!--            </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+        <div class="recipe_pages container">
+            {% for i in page_obj.paginator.page_range %}
+                <div class="pages_ajax"><a class="contrlbut" href="?page={{ i }}">{{ i }}</a></div>
+        {% endfor %}
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}

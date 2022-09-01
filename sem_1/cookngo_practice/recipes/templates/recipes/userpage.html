@@ -1,0 +1,44 @@
+{% extends 'recipes/base1.html' %}
+{% block content %}
+<main class="container">
+    <div class="person">
+    <h2 class="h2_userpage">Логин: {{ obj.username }}</h2>
+        <h3 class="h3_userpage">Последняя авторизация: {{ obj.last_login }}</h3><br>
+    </div>
+    <h2 class="h2_userpage" style="font-size: 45px;">Мои рецепты:</h2>
+ <div class="recipes_hidden">
+            {% for recipe in recipes_list %}
+                 <a href={% url 'detail' recipe.id %}>
+                <div class="recipe_block">
+                    {% if recipe.image %}
+                        <img src="{{ MEDIA_URL }}{{ recipe.image.url }}">
+                    {% endif %}
+                    <h2>{{ recipe.title }}</h2>
+                    <p class="description">{{ recipe.description }}</p>
+                    <div class="recipe_info1">
+                        <div>
+                            <span class="info_name1">ВреMя</span>
+                            <span class="info_value1">{{ recipe.time }}<br> минут</span>
+                        </div>
+                        <div>
+                            <span class="info_name1">Сложность</span>
+                            <span class="info_value1">{{ recipe.diff }}</span>
+                        </div>
+                        <div>
+                            <span class="info_name1">Калории</h4>
+                            <span class="info_value1">{{ recipe.cal }} ккал<br>100 грамм</span>
+                        </div>
+                        <div>
+                            <span class="info_name1">Просмотры</span>
+                            <span class="info_value1">{{ recipe.views }}</span>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            {% endfor %}
+
+        </div>
+    </div>
+</main>
+{% endblock %}
+

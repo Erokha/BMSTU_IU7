@@ -1,0 +1,65 @@
+
+.person{
+    margin-top: 100px;
+    border:3px solid white;
+    padding: 10px 30px;
+    background-color: rgba(0,0,0,0.5);
+}
+.h2_userpage ,.h3_userpage,.h4_userpage {
+    font-weight:lighter;
+    font-size: 25px;
+    font-family: "IntroInline";
+    text-align: center;
+}
+
+.user_recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lichkab{
+    width: 265px;
+    height: 55px;
+    font-size: 23px;
+    margin-left: 700px;
+    background-color: rgba(0,0,0,0.5);
+    border:3px solid white;
+    margin-top: 50px;
+    color: white;
+    border-radius: 50px;
+}
+
+.lichkab:hover{
+    background-color: #39b54a;
+    color: white;
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+.recipe_info1 {
+	border: 2px solid white;
+	margin: 10px 5px;
+	height: 65px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.recipe_info1:hover {
+	color: black;
+    border: 2px solid black;
+    background-color: white;
+}
+
+
+.info_name1 {
+	line-height: 20px;
+	font-size: 12px;
+	border-bottom: 1px solid white;
+}
+
+.info_value1 {
+	font-size: 10px;
+	font-family: AvantGardeCTT;
+	display: inline-block;
+}

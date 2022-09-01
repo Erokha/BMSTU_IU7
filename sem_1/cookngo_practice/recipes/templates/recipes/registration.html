@@ -1,0 +1,14 @@
+{% extends 'recipes/base_login.html' %}
+{% block content %}{% load widget_tweaks %}
+{% block reg %}
+    <div class="container registr">
+        <form action="/accounts/registration/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input class = "button" type = "submit" value="Зарегистрироваться">
+        </form>
+    </div>
+
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+
+</head>
+<body>
+    <table>
+    <tr>
+    {%for cat in cats %}
+        <tr>{{ cat.title }}</tr>
+        {% endfor %}
+    </tr>
+    </table>
+
+    {%  for recipe in object_list %}
+    <ul>
+        <li><a href = #>{{   recipe.title }}</a> </li>
+    </ul>
+    {% endfor %}
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+
+        </span>
+    </div>
+</body>
+
+</html>
